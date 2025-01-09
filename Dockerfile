@@ -5,8 +5,16 @@ WORKDIR /app
 
 # Copy the current directory contents into the container at /app 
 ADD . /app
+
+# Install git
+RUN apt-get update && apt-get install -y git
+
+# Clone the repository
+RUN git clone https://github.com/3103512zugchef/MammaMia.git
+
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
+
 #EXPOSE the port, for now default is 8080 cause it's the only one really allowed by HuggingFace
 EXPOSE 8080
 
